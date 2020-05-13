@@ -2,7 +2,6 @@ from selenium.common.exceptions import TimeoutException,InvalidArgumentException
 from selenium.webdriver.support import expected_conditions as EC
 from ..utils.utils import efficientGet, dataDict, linkDict
 from selenium.webdriver.support.ui import WebDriverWait
-from ..utils.dat import DATA_DICT, LINK_DICT
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 from ..conf import TIMEOUT
