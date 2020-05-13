@@ -38,8 +38,7 @@ Requires a URL for an image on the internet or the directory for one saved local
 ```python
 import res.image_search.reverse_search as rSearch
 
-url = "/some/path/locally
-# OR
+url = "/some/path/locally"
 # url = "https://media.wired.com/photos/5b8999943667562d3024c321/master/w_2560%2Cc_limit/trash2-01.jpg"
 
 results = rSearch(url = url)
