@@ -36,12 +36,12 @@ Requires a URL for an image on the internet or the directory for one saved local
 **Code:**
 
 ```python
-import res.image_search.reverse_search as rSearch
+from res.image_search import reverse_search
 
 url = "/some/path/locally"
 # url = "https://media.wired.com/photos/5b8999943667562d3024c321/master/w_2560%2Cc_limit/trash2-01.jpg"
 
-results = rSearch(url = url)
+results = reverse_search(url = url)
 print(res)
 ```
 
