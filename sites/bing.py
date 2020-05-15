@@ -7,7 +7,10 @@ from bs4 import BeautifulSoup
 from ..conf import TIMEOUT
 from time import sleep
 import validators
+import mimetypes
+import requests
 import os
+
 
 BING_URL = "https://www.bing.com/?scope=images&nr=1&FORM=NOFORM"
 
@@ -28,9 +31,13 @@ def search_bing(driver, url):
                 os.makedirs("temp/")
             except FileExistsError:
                 pass
-            ext = url.split(".")[-1]
-            downloadMedia(url, f'temp/bing.{ext}')
-            url = os.getcwd() + f'/temp/bing.{ext}'
+            response = requests.get(url)
+            content_type = response.headers['content-type']
+            ext = mimetypes.guess_extension(content_type)
+            if ext is None:
+                ext = ".png"
+            downloadMedia(url, f'temp/bing{ext}')
+            url = os.getcwd() + f'/temp/bing{ext}'
         except Exception as e:
             print("Failed to download media", e)
             return results

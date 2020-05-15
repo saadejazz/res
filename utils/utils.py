@@ -8,7 +8,7 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from time import sleep
 
-def setDriver(executable_path, headless = False, maximize = False):
+def setDriver(executable_path, headless = False, maximize = True):
     chrome_options = webdriver.ChromeOptions()
     prefs = {"profile.default_content_setting_values.notifications" : 2}
     chrome_options.add_experimental_option("prefs",prefs)
