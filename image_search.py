@@ -1,12 +1,13 @@
 from .sites import google, bing, yandex, tineye
 from .utils.utils import setDriver, dataDict
 from billiard import Pool
+from .conf import EXECUTABLE_PATH
 
 
 URL = ""
 
 def search(key):
-    with setDriver("res/driver/chromedriver") as driver:
+    with setDriver(EXECUTABLE_PATH) as driver:
         if key == "google":
             return google.search_google(driver, URL)
         elif key == "bing":
