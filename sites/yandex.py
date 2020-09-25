@@ -20,10 +20,13 @@ def search_yandex(driver, url):
     except TimeoutException:
         return results
     if validators.url(url):
-        element = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@name='cbir-url']")))
-        element.send_keys(url)
-        element = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@name='cbir-submit']")))
-        driver.execute_script("arguments[0].click();", element)
+        try:
+            element = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@name='cbir-url']")))
+            element.send_keys(url)
+            element = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@name='cbir-submit']")))
+            driver.execute_script("arguments[0].click();", element)
+        except TimeoutException:
+            return results
     else:
         try:
             element = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@name='upfile']")))

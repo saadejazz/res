@@ -15,10 +15,13 @@ def search_tineye(driver, url):
     wait = WebDriverWait(driver, TIMEOUT)
     results = dataDict()
     if validators.url(url):
-        element = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='url_box']")))
-        element.send_keys(url)
-        element = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='url_submit']")))
-        driver.execute_script("arguments[0].click();", element)
+        try:
+            element = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='url_box']")))
+            element.send_keys(url)
+            element = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='url_submit']")))
+            driver.execute_script("arguments[0].click();", element)
+        except TimeoutException:
+            return results
     else:
         try:
             element = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='upload_box']")))
